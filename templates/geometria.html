@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Operações Geometricas</h1>
+
+<div class="calculos">
+
+    <div class="card_operacao">
+        <h2>Area do Triangulo</h2>
+        <form class="form-somar" action="{{ url_for('Triangulo') }}" method="post">
+            <label>
+                <input placeholder="Digite a Base do Triangulo" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Área = (base × altura) / 2</p>
+
+            <label>
+                <input placeholder="Digite a Altura do Triangulo" name="form-n2" class="form-control">
+            </label>
+
+            <p class="resultado">
+                {% if Triangulo is defined %}
+                {{ n1 }} * {{ n2 }} / 2 = {{ Triangulo }}
+                {% else %}
+                {% endif %}
+            </p>
+
+            <button type="submit" class="btn btn-info">Calcular Triangulo</button>
+        </form>
+    </div>
+
+    <div class="card_operacao">
+        <h2>Area do Circulo</h2>
+        <form class="form-somar" action="{{ url_for('Circulo') }}" method="post">
+            <label>
+                <input placeholder="Digite um número" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Área = π × raio²</p>
+
+            <label>
+                <input placeholder="Digite um número" name="form-n2" class="form-control">
+            </label>
+
+            <p class="resultado">
+                {% if Circulo is defined %}
+                {{ n1 * n1 }} * 3.14 = {{ Circulo }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular Circulo</button>
+
+        </form>
+
+    </div>
+
+    <div class="card_operacao">
+        <h2>Area do Quadrado</h2>
+        <form class="form-somar" action="{{ url_for('Quadrado') }}" method="post">
+            <label>
+                <input placeholder="Digite o lado do Quadrado" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Área = Lado × Lado</p>
+
+            <label>
+                <input placeholder="Digite lado do Quadrado" name="form-n2" class="form-control">
+            </label>
+
+            <p class="resultado">
+                {% if Quadrado is defined %}
+                {{ n1 }} * {{ n2 }} = {{ Quadrado }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular Quadrado</button>
+        </form>
+    </div>
+
+
+    <div class="card_operacao">
+        <h2>Area do Hexagono</h2>
+        <form class="form-somar" action="{{ url_for('Hexagono') }}" method="post">
+            <label>
+                <input placeholder="Digite a base" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Área = (base × altura) / 2 * 6</p>
+
+            <label>
+                <input placeholder="Digite a altura" name="form-n2" class="form-control">
+            </label>
+
+            <p class="resultado">
+                {% if Hexagono is defined %}
+                {{ n1 }} * {{ n2 }} / 2 * 6 = {{ Hexagono }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular Hexagono</button>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="calculos">
+
+    <div class="card_operacao">
+        <h2>Perimetro do Triangulo</h2>
+        <form class="form-somar" action="{{ url_for('TrianguloP') }}" method="post">
+            <label>
+                <input placeholder="Digite o lado do Triangulo" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Lado x 3</p>
+
+
+            <p class="resultado">
+                {% if TrianguloP is defined %}
+                {{ n1 }} * 3 = {{ TrianguloP }}
+                {% else %}
+                {% endif %}
+            </p>
+
+            <button type="submit" class="btn btn-info">Calcular Triangulo</button>
+        </form>
+    </div>
+
+
+    <div class="card_operacao">
+        <h2>Perimetro do Circulo</h2>
+        <form class="form-somar" action="{{ url_for('Circulop') }}" method="post">
+            <label>
+                <input placeholder="Digite a Base do Triangulo" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">C = 2πr</p>
+
+            <label>
+                <input placeholder="Digite a Altura do Triangulo" name="form-n2" class="form-control">
+            </label>
+
+            <p class="resultado">
+                {% if Circulop is defined %}
+                {{ n1 }} * 2 * 3.14 = {{ Circulop }}
+                {% else %}
+                {% endif %}
+            </p>
+
+            <button type="submit" class="btn btn-info">Calcular Circulo</button>
+        </form>
+    </div>
+    <div class="card_operacao">
+        <h2>Perimetro do Quadrado</h2>
+        <form class="form-somar" action="{{ url_for('Quadradop') }}" method="post">
+            <label>
+                <input placeholder="Digite o lado do quadrado" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Lado x 4</p>
+
+
+            <p class="resultado">
+                {% if Quadradop is defined %}
+                {{ n1 }} * 4 = {{ Quadradop }}
+                {% else %}
+                {% endif %}
+            </p>
+
+            <button type="submit" class="btn btn-info">Calcular Quadrado</button>
+        </form>
+    </div>
+    <div class="card_operacao">
+        <h2>Perimetro do Hexagono</h2>
+        <form class="form-somar" action="{{ url_for('Hexagonop') }}" method="post">
+            <label>
+                <input placeholder="Digite o lado do hexagono" name="form-n1" class="form-control">
+            </label>
+
+            <p class="operador">Lado x 6</p>
+
+
+            <p class="resultado">
+                {% if Hexagonop is defined %}
+                {{ n1 }} * 6 = {{ Hexagonop }}
+                {% else %}
+                {% endif %}
+            </p>
+
+            <button type="submit" class="btn btn-info">Calcular Hexagono</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
