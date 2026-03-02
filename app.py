@@ -62,7 +62,7 @@ def login():
         senha = request.form.get("form_senha")
         '''vericar unsando not
         if not email or not senha:
-            flash('Por favor preencha todos os campos', 'danger')
+            flash('Por favor preencha todos os campos', 'alert-danger')
         return render_template('login.html')
         '''
         if email and senha:
@@ -79,12 +79,12 @@ def login():
 
                 else:
                     # senha incorreta
-                    flash('Senha incorreta', 'danger')
-                    return render_template('login.html')
+                    flash('Senha incorreta', 'alert-danger')
+                    return redirect(url_for('login'))
             else:
                 # se nao encontrado
-                flash(f'Email não encontrado', 'danger')
-                return render_template('login.html')
+                flash(f'Email não encontrado', 'alert-danger')
+                return redirect(url_for('login'))
     else:
         return render_template('login.html')
 

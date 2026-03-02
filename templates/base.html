@@ -19,10 +19,11 @@
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('calculos') }}">Cálculos</a></li>
         <li><a href="{{ url_for('funcionarios') }}">Funcionarios</a></li>
-        <li><a href="{{ url_for('login') }}">Login</a></li>
         <li><a>
             {% if current_user.is_authenticated %}
-            {{current_user.nome}}
+            {{current_user.nome}} <a href="{{url_for('logout')}}">SAIR</a>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
             {% endif %}
         </a></li>
     </ul>

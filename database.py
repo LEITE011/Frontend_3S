@@ -22,6 +22,7 @@ class Funcionario(Base, UserMixin):
     senha = Column(String(255),nullable=False)
     cargo = Column(String,nullable=False)
     salario = Column(String,nullable=False)
+    criado_em = Column(DateTime, server_default=func.now())
 
     def __repr__(self):
         return f'<Funcionario: {self.nome}>'
@@ -31,14 +32,6 @@ class Funcionario(Base, UserMixin):
 
     def check_password(self,password):
         return check_password_hash(self.senha,password)
-
-    def save(self, db_session):
-        try:
-            db_session.add(self)
-            db_session.commit()
-        except SQLAlchemyError:
-            db_session.rollback()
-            raise
 
 
 
