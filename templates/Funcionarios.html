@@ -53,9 +53,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="bi bi-trash text-danger" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
             </div>
-            </di>
         </div>
     </div>
 </div>
@@ -72,6 +71,8 @@
             <th>Email</th>
             <th>Cargo</th>
             <th>Salário</th>
+            <th>Data de Criação</th>
+            <th>Ações</th>
 
         </tr>
         </thead>
@@ -86,6 +87,8 @@
             <td>{{ i.email }}</td>
             <td>{{ i.cargo }}</td>
             <td>{{ i.salario }}</td>
+            <td>{{ i.criado_em }}</td>
+
         </tr>
         {% endfor %}
         </tbody>

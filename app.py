@@ -26,9 +26,7 @@ def load_user(user_id):
 
 
 @app.route('/')
-@login_required
 def home():
-    # havera processos aqui
     return render_template('home.html')
 
 
@@ -303,14 +301,14 @@ def cadastro_funcionario():
             flash(f'Erro ao cadastrar usuario', 'danger')
             print(f'Erro ao cadastrar: {e}')
             return redirect(url_for('cadastro_funcionario'))
-    return render_template('cadastro.html')
+    return render_template('home.html')
 
 
 @app.route("/logout")
 def logout():
     logout_user()
     flash('Logout com sucesso', 'success')
-    return redirect(url_for("login"))
+    return redirect(url_for("home"))
 
 
 if __name__ == '__main__':
