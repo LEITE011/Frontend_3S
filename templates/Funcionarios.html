@@ -24,25 +24,26 @@
                         <h1>CADASTRO</h1>
 
                         Nome:
-                        <input type="text" placeholder="Digite seu nome" name="form_nome" class="form-control"><br>
+                        <input id="input-nome" type="text" placeholder="Digite seu nome" name="form_nome" class="form-control"><br>
                         data de nascimeto:
-                        <input type="date" placeholder="Digite a Senha" name="form_data" class="form-control"
+                        <input id="input-nascimanto" type="date" placeholder="Digite a Senha" name="form_data" class="form-control"
                                required><br>
                         CPF:
-                        <input type="number" placeholder="Digite a Senha" name="form_cpf" class="form-control"
+                        <input id="input-cpf" type="number" placeholder="Digite a Senha" name="form_cpf" class="form-control"
                                required><br>
                         Email:
-                        <input type="text" placeholder="Digite o Email" name="form_email" class="form-control"><br>
+                        <input id="input-emaill" type="text" placeholder="Digite o Email" name="form_email" class="form-control"><br>
                         Senha:
-                        <input type="password" placeholder="Digite a Senha" name="form_senha" class="form-control"
+                        <input id="input-senhaa" type="password" placeholder="Digite a Senha" name="form_senha" class="form-control"
                                required><br>
                         cargo:
-                        <input type="text" placeholder="Digite a Senha" name="form_cargo" class="form-control"
+                        <input id="input-cargo" type="text" placeholder="Digite a Senha" name="form_cargo" class="form-control"
                                required><br>
                         Salario:
-                        <input type="number" placeholder="Digite a Senha" name="form_salario" class="form-control"
+                        <input id="input-salario" type="number" placeholder="Digite a Senha" name="form_salario" class="form-control"
                                required><br>
                         <button type="submit" class="btn btn-info">Cadastrar</button>
+                        <a class="btn btn-danger" onclick="limpaInputsCadastro()">Cancelar</a>
                         <br>
                         {% if session.Funcionario %}
                         {% else %}
@@ -89,6 +90,104 @@
             <td>{{ i.salario }}</td>
             <td>{{ i.criado_em }}</td>
 
+
+            <td>
+                <a href="{{url_for('editar_funcionario',var_id=i.id)}}" id="link_out" data-bs-toggle="modal"
+                   data-bs-target="#staticEdit{{i.id}}"><i class="bi bi-pencil"></i></a>
+                <a href="{{url_for('deletar_funcionario',var_id=i.id)}}" id="" data-bs-toggle="modal"
+                   data-bs-target="#staticDrop{{i.id}}"><i class="bi bi-trash text-danger"></i></a>
+            </td>
+
+
+            <div class="modal fade" id="staticEdit{{i.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                 tabindex="-1"
+                 aria-labelledby="staticEdit_{{i.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticEdit_{{i.id}}">Editar Conta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-calc" action="{{url_for('editar_funcionario',var_id=i.id)}}"
+                                  method="post">
+                                <label>
+                                    Nome:
+                                    <input class="form-control w-100 m-2" placeholder="Defina o nome"
+                                           name="form_nome" value="{{i.nome}}">
+                                </label>
+                                <label>
+                                    Data de Nascimento:
+                                    <input class="form-control w-100 m-2" type="date"
+                                           value="{{i.data_nascimento}}"
+                                           placeholder="Defina o Data de Nascimento" name="form_date_nascimento">
+                                </label>
+                                <label>
+                                    CPF:
+                                    <input class="form-control w-100 m-2" placeholder="Defina o CPF" name="form_cpf"
+                                           value="{{i.cpf}}">
+                                </label>
+                                <label>
+                                    E-mail:
+                                    <input class="form-control w-100 m-2" type="email" placeholder="Defina o E-mail"
+                                           name="form_email" value="{{i.email}}">
+                                </label>
+                                <label>
+                                    Cargo:
+                                    <input class="form-control w-100 m-2" placeholder="Defina o Cargo" name="form_cargo"
+                                           value="{{i.cargo}}">
+                                </label>
+                                <label>
+                                    Sálario:
+                                    <input class="form-control w-100 m-2" placeholder="Defina o Sálario"
+                                           name="form_salario" value="{{i.salario}}">
+                                </label>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-info"><i class="bi bi-pencil"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="staticDrop{{i.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                 tabindex="-1"
+                 aria-labelledby="staticDrop_{{i.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticDrop_{{i.id}}">Deletar Conta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column">
+                            <form class="form-calc" action="{{url_for('deletar_funcionario',var_id=i.id)}}"
+                                  method="post">
+                                <div class="modal-footer">
+                                    <p>Deseja deletar conta {{i.nome}}?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger"
+                                            type="submit">
+                                        <i class="bi bi-person-lines-fill"></i>
+                                        Deletar
+                                    </button>
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         {% endfor %}
         </tbody>

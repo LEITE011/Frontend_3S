@@ -40,7 +40,7 @@ def calculos():
 def funcionarios():
     func_sql = select(Funcionario)
     resultado = db_session.execute(func_sql).scalars().all()
-    return render_template("Funcionarios.html",resultado=resultado)
+    return render_template("Funcionarios.html", resultado=resultado)
 
 
 @app.route('/operacoes')
@@ -287,7 +287,8 @@ def cadastro_funcionario():
             flash(f'Email {cpf} ja existente', 'danger')
             return render_template('cadastro.html')
         try:
-            novo_Funcionario = Funcionario(nome=nome, data_nascimeto=data_nascimeto, cpf=cpf, email=email, senha=senha, cargo=cargo, salario=salario)
+            novo_Funcionario = Funcionario(nome=nome, data_nascimeto=data_nascimeto, cpf=cpf, email=email, senha=senha,
+                                           cargo=cargo, salario=salario)
             novo_Funcionario.set_password(senha)
             db_session.add(novo_Funcionario)
             db_session.commit()
@@ -309,6 +310,71 @@ def logout():
     logout_user()
     flash('Logout com sucesso', 'success')
     return redirect(url_for("home"))
+
+
+@app.route('/editar_funcionario/<int:var_id>', methods=['GET', 'POST'])
+def editar_funcionario(var_id):
+    edit_funcio = select(Funcionario).where(Funcionario.id == var_id)
+    result_f = db_session.execute(edit_funcio).scalar_one_or_none()
+    if request.method == 'POST':
+        novo_name = request.form.get('form_nome')
+        novo_data_nascimento = request.form.get('form_date_nascimento')
+        novo_cpf = request.form.get('form_cpf')
+        novo_email = request.form.get('form_email')
+        novo_cargo = request.form.get('form_cargo')
+        novo_salario = request.form.get('form_salario')
+        if novo_name != '':
+            result_f.nome = novo_name
+        if novo_data_nascimento != '':
+            result_f.data_nascimento = novo_data_nascimento
+        if novo_cpf != '':
+            result_f.cpf = novo_cpf
+        if novo_email != '':
+            result_f.email = novo_email
+        if novo_cargo != '':
+            result_f.cargo = novo_cargo
+        if novo_salario != '':
+            result_f.salario = novo_salario
+        try:
+            db_session.commit()
+            flash('Funcionario editado com sucesso!', 'success')
+            return redirect(url_for('funcionarios'))
+        except SQLAlchemyError as e:
+            print(f'Erro: {e} na base de dados')
+            flash(f'Erro na base de dados', 'alert-danger')
+            db_session.rollback()
+            return redirect(url_for('funcionarios'))
+        except Exception as e:
+            print(f'Erro: {e}')
+            flash(f'Erro: {e}', 'alert-danger')
+    return render_template('funcionarios.html', result_f=result_f)
+
+
+@app.route('/deletar_funcionario/<int:var_id>', methods=['GET', 'POST'])
+def deletar_funcionario(var_id):
+    delet_funcio = select(Funcionario).where(Funcionario.id == int(var_id))
+    result_f = db_session.execute(delet_funcio).scalar_one_or_none()
+    if request.method == 'POST':
+        try:
+            db_session.delete(result_f)
+            db_session.commit()
+            flash('Funcionario deletado com sucesso!', 'success')
+            return redirect(url_for('funcionarios'))
+        except SQLAlchemyError as e:
+            print(f'Erro: {e} na base de dados')
+            flash(f'Erro na base de dados', 'alert-danger')
+            db_session.rollback()
+            return redirect(url_for('funcionarios'))
+        except Exception as e:
+            print(f'Erro: {e}')
+            flash(f'Erro: {e}', 'alert-danger')
+        return render_template('funcionarios.html', result_f=result_f)
+    return render_template('funcionarios.html', result_f=result_f)
+
+
+@app.route('/animais')
+def animais():
+    return render_template('animais.html')
 
 
 if __name__ == '__main__':

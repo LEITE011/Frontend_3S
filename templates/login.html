@@ -5,13 +5,16 @@
 <div class="card_login">
     <h1>LOGIN</h1>
 
-    <form class="card_login" action="{{url_for('login')}}" method="post">
+    <form id="form-login" class="card_login" action="{{url_for('login')}}" method="post">
         Email:
-        <input type="text" placeholder="Digite o Email" name="form_email" class="form-control"><br>
+        <input id="input-email" type="text" placeholder="Digite o Email" name="form_email" class="form-control"><br>
         Senha:
-        <input type="password" placeholder="Digite a Senha" name="form_senha" class="form-control" required><br>
+        <input id="input-senha" type="password" placeholder="Digite a Senha" name="form_senha" class="form-control"
+               required><br>
         <button type="submit" class="btn btn-info">Entrar</button>
         <br>
+        <button class="btn btn-danger" onclick="limpaInputsLogin()">Cancelar</button>
+        <br><br>
 
         <!-- botao para abrir o modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -33,29 +36,31 @@
                             <h1>CADASTRO</h1>
 
                             Nome:
-                            <input type="text" placeholder="Digite seu nome" name="form_nome"
+                            <input id="input-nome" type="text" placeholder="Digite seu nome" name="form_nome"
                                    class="form-control"><br>
                             data de nascimeto:
-                            <input type="date" placeholder="Digite a Senha" name="form_data" class="form-control"
+                            <input id="input-nascimanto" type="date" placeholder="Digite a Senha" name="form_data" class="form-control"
                                    required><br>
                             CPF:
-                            <input type="number" placeholder="Digite a Senha" name="form_cpf" class="form-control"
+                            <input id="input-cpf" type="number" placeholder="Digite a Senha" name="form_cpf" class="form-control"
                                    required><br>
                             Email:
-                            <input type="text" placeholder="Digite o Email" name="form_email"
+                            <input id="input-emaill" type="text" placeholder="Digite o Email" name="form_email"
                                    class="form-control"><br>
                             Senha:
-                            <input type="password" placeholder="Digite a Senha" name="form_senha"
+                            <input id="input-senhaa" type="password" placeholder="Digite a Senha" name="form_senha"
                                    class="form-control"
                                    required><br>
                             cargo:
-                            <input type="text" placeholder="Digite a Senha" name="form_cargo" class="form-control"
+                            <input id="input-cargo" type="text" placeholder="Digite a Senha" name="form_cargo" class="form-control"
                                    required><br>
                             Salario:
-                            <input type="number" placeholder="Digite a Senha" name="form_salario"
+                            <input id="input-salario" type="number" placeholder="Digite a Senha" name="form_salario"
                                    class="form-control"
                                    required><br>
                             <button type="submit" class="btn btn-info">Cadastrar</button>
+
+                            <a class="btn btn-danger" onclick="limpaInputsCadastro()">Cancelar</a>
                             <br>
                             {% if session.Funcionario %}
                             {% else %}
@@ -67,13 +72,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                 </div>
-                </di>
             </div>
         </div>
     </div>
-
-
-    </form>
 </div>
 
 {% endblock conteudo %}
