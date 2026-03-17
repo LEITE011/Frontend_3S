@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, flash, request, redirect, session
 from sqlalchemy.exc import SQLAlchemyError
 
+from api_routes import routes
 from database import db_session, Funcionario
 from sqlalchemy import select, and_, func
 from flask_login import LoginManager, login_required, logout_user, current_user, login_user
@@ -105,9 +106,9 @@ def somar():
 @app.route('/subtrair', methods=['GET', 'POST'])
 def subtrair():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             subtrair = n1 - n2
             flash('Subtração realizado com sucesso!', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, subtrair=subtrair)
@@ -120,9 +121,9 @@ def subtrair():
 @app.route('/Multiplicar', methods=['GET', 'POST'])
 def Multiplicar():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             Multiplicar = n1 * n2
             flash('Multiplicação realizado com sucesso!', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, Multiplicar=Multiplicar)
@@ -135,9 +136,9 @@ def Multiplicar():
 @app.route('/Dividir', methods=['GET', 'POST'])
 def Dividir():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             Dividir = n1 / n2
             flash('Divisão realizado com sucesso!', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, Dividir=Dividir)
@@ -150,9 +151,9 @@ def Dividir():
 @app.route('/Triangulo', methods=['GET', 'POST'])
 def Triangulo():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             Triangulo = n1 * n2 / 2
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, n2=n2, Triangulo=Triangulo)
@@ -165,9 +166,9 @@ def Triangulo():
 @app.route('/Circulo', methods=['GET', 'POST'])
 def Circulo():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             Circulo = 3.14 * (n1 * n1)
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, n2=n2, Circulo=Circulo)
@@ -180,9 +181,9 @@ def Circulo():
 @app.route('/Quadrado', methods=['GET', 'POST'])
 def Quadrado():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             Quadrado = n1 * n2
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, n2=n1, Quadrado=Quadrado)
@@ -195,9 +196,9 @@ def Quadrado():
 @app.route('/Hexagono', methods=['GET', 'POST'])
 def Hexagono():
     if request.method == 'POST':
-        if request.form['form_n1'] and request.form['form_n2']:
-            n1 = int(request.form['form_n1'])
-            n2 = int(request.form['form_n2'])
+        if request.form['form-n1'] and request.form['form-n2']:
+            n1 = int(request.form['form-n1'])
+            n2 = int(request.form['form-n2'])
             Hexagono = n1 * n1 / 2 * 6
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, n2=n2, Hexagono=Hexagono)
@@ -210,8 +211,8 @@ def Hexagono():
 @app.route('/TrianguloP', methods=['GET', 'POST'])
 def TrianguloP():
     if request.method == 'POST':
-        if request.form['form_n1']:
-            n1 = int(request.form['form_n1'])
+        if request.form['form-n1']:
+            n1 = int(request.form['form-n1'])
             TrianguloP = n1 * 3
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, TrianguloP=TrianguloP)
@@ -224,8 +225,8 @@ def TrianguloP():
 @app.route('/Circulop', methods=['GET', 'POST'])
 def Circulop():
     if request.method == 'POST':
-        if request.form['form_n1']:
-            n1 = int(request.form['form_n1'])
+        if request.form['form-n1']:
+            n1 = int(request.form['form-n1'])
             Circulop = n1 * 2 * 3.14
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, Circulop=Circulop)
@@ -238,8 +239,8 @@ def Circulop():
 @app.route('/Quadradop', methods=['GET', 'POST'])
 def Quadradop():
     if request.method == 'POST':
-        if request.form['form_n1']:
-            n1 = int(request.form['form_n1'])
+        if request.form['form-n1']:
+            n1 = int(request.form['form-n1'])
             Quadradop = n1 * 4
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, Quadradop=Quadradop)
@@ -252,8 +253,8 @@ def Quadradop():
 @app.route('/Hexagonop', methods=['GET', 'POST'])
 def Hexagonop():
     if request.method == 'POST':
-        if request.form['form_n1']:
-            n1 = int(request.form['form_n1'])
+        if request.form['form-n1']:
+            n1 = int(request.form['form-n1'])
             Hexagonop = n1 * 6
             flash('Calculo realizado com sucesso!', 'alert-success')
             return render_template("geometria.html", n1=n1, Hexagonop=Hexagonop)
@@ -266,7 +267,7 @@ def Hexagonop():
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro_funcionario():
     if request.method == 'POST':
-        nome = request.form.get("form_nome")
+        nome = request.form.get("form-nome")
         data_nascimeto = request.form.get("form_data")
         cpf = request.form.get("form_cpf")
         email = request.form.get("form_email")
@@ -317,7 +318,7 @@ def editar_funcionario(var_id):
     edit_funcio = select(Funcionario).where(Funcionario.id == var_id)
     result_f = db_session.execute(edit_funcio).scalar_one_or_none()
     if request.method == 'POST':
-        novo_name = request.form.get('form_nome')
+        novo_name = request.form.get('form-nome')
         novo_data_nascimento = request.form.get('form_date_nascimento')
         novo_cpf = request.form.get('form_cpf')
         novo_email = request.form.get('form_email')
@@ -376,6 +377,17 @@ def deletar_funcionario(var_id):
 def animais():
     return render_template('animais.html')
 
+@app.route('/gatos')
+def listar_gatos():
+    gatos = routes.get_gatos()
+
+    for gato in gatos:
+        gato["temperament"] = gato["temperament"].split(',')
+        gato["image"] = routes.get_image()["url"]
+
+
+    return render_template('gatos.html', gatos=gatos)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5004)

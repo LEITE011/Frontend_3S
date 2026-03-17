@@ -6,30 +6,30 @@
 <!-- Passo 2: Verifica se possui mensagens enviadas pelo app -->
 <!-- Passo 3: Definir with_categories=true caso queira ter acesso as categorias -->
 {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-error px-3">
-                <!-- Passo 4: Percorrer a lista de mensagens -->
-                {% for category, message in messages %}
-                    <!-- Passo 5: Criar um card filho -->
-                    <div class="alert {{ category }} alert-dismissible fade show px-5" role="alert">
-                      <strong>{{ message }}</strong>.
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
+{% if messages %}
+<div class="flash-error px-3">
+    <!-- Passo 4: Percorrer a lista de mensagens -->
+    {% for category, message in messages %}
+    <!-- Passo 5: Criar um card filho -->
+    <div class="alert {{ category }} alert-dismissible fade show px-5" role="alert">
+        <strong>{{ message }}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
 <div class="calculos">
 
     <div class="card_operacao">
-        <h2>Area do Triangulo</h2>
+        <h2>Área do Triangulo</h2>
         <form class="form-somar" action="{{ url_for('Triangulo') }}" method="post">
             <label>
                 <input placeholder="Digite a Base do Triangulo" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Área = (base × altura) / 2</p>
+            <p class="operador"></p>
 
             <label>
                 <input placeholder="Digite a Altura do Triangulo" name="form-n2" class="form-control">
@@ -45,32 +45,33 @@
             <button type="submit" class="btn btn-info">Calcular Triangulo</button>
         </form>
         <div class="accordion" id="accordionExample1">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree1" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                <div class="accordion-body">
-                    <h4>Calcular Area do Triangulo</h4>
-                    <p>Para calcular a área de um triângulo equilátero, eleve a medida do lado ao quadrado, multiplique o resultado por 1,73 (raiz de 3) e divida tudo por 4.</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree1" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                    <div class="accordion-body">
+                        <h4>Calcular Area do Triangulo</h4>
+                        <p>Para calcular a área de um triângulo equilátero, eleve a medida do lado ao quadrado,
+                            multiplique o resultado por 1,73 (raiz de 3) e divida tudo por 4.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
     <div class="card_operacao">
-        <h2>Area do Circulo</h2>
+        <h2>Área do Circulo</h2>
         <form class="form-somar" action="{{ url_for('Circulo') }}" method="post">
             <label>
                 <input placeholder="Digite um número" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Área = π × raio²</p>
+            <p class="operador"></p>
 
             <label>
                 <input placeholder="Digite um número" name="form-n2" class="form-control">
@@ -86,33 +87,33 @@
 
         </form>
         <div class="accordion" id="accordionExample2">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree2" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                <div class="accordion-body">
-                    <h4>Calcular Area do Circulo</h4>
-                    <p>Para calcular a área do círculo, eleve o raio ao quadrado e multiplique o resultado por 3,14.
-</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree2" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                    <div class="accordion-body">
+                        <h4>Calcular Area do Circulo</h4>
+                        <p>Para calcular a área do círculo, eleve o raio ao quadrado e multiplique o resultado por 3,14.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
     <div class="card_operacao">
-        <h2>Area do Quadrado</h2>
+        <h2>Área do Quadrado</h2>
         <form class="form-somar" action="{{ url_for('Quadrado') }}" method="post">
             <label>
                 <input placeholder="Digite o lado do Quadrado" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Área = Lado × Lado</p>
+            <p class="operador"></p>
 
             <label>
                 <input placeholder="Digite lado do Quadrado" name="form-n2" class="form-control">
@@ -127,33 +128,33 @@
             <button type="submit" class="btn btn-info">Calcular Quadrado</button>
         </form>
         <div class="accordion" id="accordionExample3">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree3" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                <div class="accordion-body">
-                    <h4>Calcular Area do Quadrado</h4>
-                    <p>Multiplique o lado por ele mesmo</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree3" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
+                    <div class="accordion-body">
+                        <h4>Calcular Area do Quadrado</h4>
+                        <p>Multiplique o lado por ele mesmo</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
 
     <div class="card_operacao">
-        <h2>Area do Hexagono</h2>
+        <h2>Área do Hexagono</h2>
         <form class="form-somar" action="{{ url_for('Hexagono') }}" method="post">
             <label>
                 <input placeholder="Digite a base" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Área = (base × altura) / 2 * 6</p>
+            <p class="operador"></p>
 
             <label>
                 <input placeholder="Digite a altura" name="form-n2" class="form-control">
@@ -169,21 +170,22 @@
 
         </form>
         <div class="accordion" id="accordionExample4">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree4" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
-                <div class="accordion-body">
-                    <h4>Calcular Area do Hexagono</h4>
-                    <p>Para calcular a área do hexágono regular, eleve a medida do lado ao quadrado e multiplique o resultado por 2,6.</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree4" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
+                    <div class="accordion-body">
+                        <h4>Calcular Area do Hexagono</h4>
+                        <p>Para calcular a área do hexágono regular, eleve a medida do lado ao quadrado e multiplique o
+                            resultado por 2,6.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 </div>
@@ -197,7 +199,7 @@
                 <input placeholder="Digite o lado do Triangulo" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Lado x 3</p>
+            <p class="operador"></p>
 
 
             <p class="resultado">
@@ -210,21 +212,21 @@
             <button type="submit" class="btn btn-info">Calcular Triangulo</button>
         </form>
         <div class="accordion" id="accordionExample5">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree5" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                <div class="accordion-body">
-                    <h4>Calcular Perimetro do Triangulo</h4>
-                    <p>Para calcular o perímetro do triângulo, basta somar a medida dos seus três lados.</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree5" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
+                    <div class="accordion-body">
+                        <h4>Calcular Perimetro do Triangulo</h4>
+                        <p>Para calcular o perímetro do triângulo, basta somar a medida dos seus três lados.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
@@ -235,7 +237,7 @@
                 <input placeholder="Digite a Base do Triangulo" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">C = 2πr</p>
+            <p class="operador"></p>
 
             <label>
                 <input placeholder="Digite a Altura do Triangulo" name="form-n2" class="form-control">
@@ -251,22 +253,22 @@
             <button type="submit" class="btn btn-info">Calcular Circulo</button>
         </form>
         <div class="accordion" id="accordionExample6">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree6" aria-expanded="false" aria-controls="collapseThree6">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree6" class="accordion-collapse collapse" data-bs-parent="#accordionExample6">
-                <div class="accordion-body">
-                    <h4>Calcular Perimetro do Circulo</h4>
-                    <p>Para calcular o perímetro do círculo, multiplique o raio por 6,28.
-(Ou multiplique o diâmetro por 3,14).</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree6" aria-expanded="false" aria-controls="collapseThree6">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree6" class="accordion-collapse collapse" data-bs-parent="#accordionExample6">
+                    <div class="accordion-body">
+                        <h4>Calcular Perimetro do Circulo</h4>
+                        <p>Para calcular o perímetro do círculo, multiplique o raio por 6,28.
+                            (Ou multiplique o diâmetro por 3,14).</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
@@ -277,7 +279,7 @@
                 <input placeholder="Digite o lado do quadrado" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Lado x 4</p>
+            <p class="operador"></p>
 
 
             <p class="resultado">
@@ -290,21 +292,21 @@
             <button type="submit" class="btn btn-info">Calcular Quadrado</button>
         </form>
         <div class="accordion" id="accordionExample7">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree7" aria-expanded="false" aria-controls="collapseThree7">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree7" class="accordion-collapse collapse" data-bs-parent="#accordionExample7">
-                <div class="accordion-body">
-                    <h4>Calcular Perimetro do Quadrado</h4>
-                    <p>Para calcular o perímetro do quadrado, multiplique o lado por 4.</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree7" aria-expanded="false" aria-controls="collapseThree7">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree7" class="accordion-collapse collapse" data-bs-parent="#accordionExample7">
+                    <div class="accordion-body">
+                        <h4>Calcular Perimetro do Quadrado</h4>
+                        <p>Para calcular o perímetro do quadrado, multiplique o lado por 4.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
@@ -315,7 +317,7 @@
                 <input placeholder="Digite o lado do hexagono" name="form-n1" class="form-control">
             </label>
 
-            <p class="operador">Lado x 6</p>
+            <p class="operador"></p>
 
 
             <p class="resultado">
@@ -328,21 +330,21 @@
             <button type="submit" class="btn btn-info">Calcular Hexagono</button>
         </form>
         <div class="accordion" id="accordionExample8">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree8" aria-expanded="false" aria-controls="collapseThree8">
-                    <i class="bi bi-info-circle"></i> Como Calcular?
-                </button>
-            </h2>
-            <div id="collapseThree8" class="accordion-collapse collapse" data-bs-parent="#accordionExample8">
-                <div class="accordion-body">
-                    <h4>Calcular Perimetro do Hexagono</h4>
-                    <p>Para calcular o perímetro do hexágono regular, multiplique o lado por 6.</p>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree8" aria-expanded="false" aria-controls="collapseThree8">
+                        <i class="bi bi-info-circle"></i> Como Calcular?
+                    </button>
+                </h2>
+                <div id="collapseThree8" class="accordion-collapse collapse" data-bs-parent="#accordionExample8">
+                    <div class="accordion-body">
+                        <h4>Calcular Perimetro do Hexagono</h4>
+                        <p>Para calcular o perímetro do hexágono regular, multiplique o lado por 6.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 </div>

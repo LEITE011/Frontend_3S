@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="d-flex flex-column gap-4" id="breeds-grid">
+    {% if gatos %}
+    {% for gato in gatos %}
+    <div class="d-flex flex-column gap-4" id="breed-grid">
+        <!-- Card 1: Abyssinian -->
+        <article class="breed-card" data-purpose="breed-card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img alt="Abyssinian cat"
+                         src="{{gato.image}}"/>
+                </div>
+                <div class="col-md-8 p-4 p-lg-5 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h3 class="h2 fw-bold text-dark mb-1">{{gato.name}}</h3>
+                            <p class="small text-muted mb-0 d-flex align-items-center gap-1">
+                                <i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> {{gato.origin}}
+                            </p>
+                        </div>
+                        <span class="badge badge-teal rounded-pill px-3 py-2">Popular</span>
+                    </div>
+                    <p class="text-secondary my-4">
+                        {{gato.description}}
+                    </p>
+                    <div class="mb-4 d-flex flex-wrap gap-2">
+                        {% for temperamento in gato.temperament %}
+                        <span class="badge badge-secondary-custom p-2 px-3">{{ temperamento }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-auto pt-3 border-top d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-4">
+                        <div class="d-flex gap-4">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="text-teal" data-lucide="clock" style="width: 20px; height: 20px;"></i>
+                                <div>
+                                    <p class="stat-label">Life Span</p>
+                                    <p class="stat-value">{{gato.life_span}}: Years</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-teal px-5" href="#">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        {% endfor %}
+        {% else %}
+        <h3>nenhum gato</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
